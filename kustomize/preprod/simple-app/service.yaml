@@ -2,11 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: simple-app-service
+  labels:
+    app: simple-app
+    env: preprod
 spec:
   selector:
     app: simple-app
+    env: preprod
   ports:
     - port: 5000
       targetPort: 5000
       protocol: TCP
-  type: LoadBalancer
+  type: ClusterIP
