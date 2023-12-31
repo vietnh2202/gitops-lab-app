@@ -1,0 +1,16 @@
+# Image Policy
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: simple-app-policy
+  namespace: simple-app
+spec:
+  imageRepositoryRef:
+    name: simple-app
+  policy:
+    numerical:
+      order: asc
+  filterTags:
+    pattern: "^RELEASE.(?P<timestamp>.*)Z$"
+    extract: "$timestamp"

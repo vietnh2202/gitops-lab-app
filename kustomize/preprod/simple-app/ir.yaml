@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: simple-app-image
+  namespace: simple-app
+spec:
+  image: ghcr.io/vietnh2202/simple-app
+  interval: 1m
