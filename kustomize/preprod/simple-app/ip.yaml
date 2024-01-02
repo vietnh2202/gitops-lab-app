@@ -1,4 +1,3 @@
-# Image Policy
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
@@ -12,5 +11,5 @@ spec:
     numerical:
       order: asc
   filterTags:
-    pattern: "^RELEASE.(?P<timestamp>.*)Z$"
+    pattern: "^preprod-(?P<timestamp>\\d{8}\\.\\d{4})-[a-f0-9]$"
     extract: "$timestamp"
