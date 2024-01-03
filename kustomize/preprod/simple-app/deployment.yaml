@@ -22,3 +22,15 @@ spec:
               cpu: "250m"
           ports:
             - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /healthz/liveness
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz/readiness
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 3
