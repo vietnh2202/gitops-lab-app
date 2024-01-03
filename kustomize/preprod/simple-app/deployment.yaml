@@ -24,13 +24,13 @@ spec:
             - containerPort: 5000
           livenessProbe:
             httpGet:
-              path: /health
+              path: /healthz/liveness
               port: 5000
             initialDelaySeconds: 3
             periodSeconds: 3
           readinessProbe:
             httpGet:
-              path: /ready
+              path: /healthz/readiness
               port: 5000
             initialDelaySeconds: 3
             periodSeconds: 3
