@@ -4,6 +4,10 @@ metadata:
   name: simple-app-deployment
   labels:
     app: simple-app
+  annotations:
+    reloader.stakater.com/auto: "true"
+    configmap.reloader.stakater.com/reload: app-config
+    secret.reloader.stakater.com/reload: my-secret
 spec:
   selector:
     matchLabels:
@@ -13,6 +17,32 @@ spec:
       labels:
         app: simple-app
     spec:
+      volumes:
+        - name: env-volume
+          emptyDir: {}
+      initContainers:
+        - name: env-creator
+          image: alpine
+          command:
+            [
+              "/bin/sh",
+              "-c",
+              "echo MY_SECRET=$(echo $MY_SECRET) > /env/.env && echo NAME=$(echo $NAME) >> /env/.env",
+            ]
+          env:
+            - name: MY_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: MY_SECRET
+            - name: NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: NAME
+                  name: app-config
+          volumeMounts:
+            - name: env-volume
+              mountPath: /env
       containers:
         - name: simple-app
           image: ghcr.io/vietnh2202/simple-app:main
@@ -22,6 +52,9 @@ spec:
               cpu: "250m"
           ports:
             - containerPort: 5000
+          # volumeMounts:
+          #   - name: env-volume
+          #     mountPath: /app/config  # Assuming the application expects the .env file here
           livenessProbe:
             httpGet:
               path: /healthz/liveness
