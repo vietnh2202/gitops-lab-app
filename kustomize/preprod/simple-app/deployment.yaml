@@ -42,7 +42,7 @@ spec:
             - containerPort: 5000
           volumeMounts:
             - name: env-volume
-              mountPath: /app/config/.env
+              mountPath: /app/.env
               subPath: .env
           livenessProbe:
             httpGet:
