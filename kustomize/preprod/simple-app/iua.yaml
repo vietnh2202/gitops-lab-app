@@ -10,14 +10,14 @@ spec:
   git:
     checkout:
       ref:
-        branch: preprod
+        branch: main
     commit:
       author:
         name: flux-bot
         email: flux-bot@users.noreply.github.com
       messageTemplate: "{{range .Updated.Images}}{{println .}}{{end}}"
     push:
-      branch: preprod
+      branch: main
   update:
     path: ./kustomize/preprod/simple-app
     strategy: Setters
