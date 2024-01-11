@@ -6,18 +6,18 @@ spec:
   interval: 1m
   sourceRef:
     kind: GitRepository
-    name: simple-app
+    name: gitops-lab-app
   git:
     checkout:
       ref:
-        branch: main
+        branch: preprod
     commit:
       author:
         name: flux-bot
         email: flux-bot@users.noreply.github.com
       messageTemplate: "{{range .Updated.Images}}{{println .}}{{end}}"
     push:
-      branch: main
+      branch: preprod
   update:
     path: ./kustomize/preprod/simple-app
     strategy: Setters
