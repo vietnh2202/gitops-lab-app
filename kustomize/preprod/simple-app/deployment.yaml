@@ -33,7 +33,7 @@ spec:
               mountPath: /env
       containers:
         - name: simple-app
-          image: ghcr.io/vietnh2202/simple-app:preprod
+          image: ghcr.io/vietnh2202/simple-app
           imagePullPolicy: Always
           resources:
             requests:

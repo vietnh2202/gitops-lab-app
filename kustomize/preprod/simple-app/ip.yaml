@@ -3,13 +3,12 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: simple-app-policy
-  namespace: simple-app
 spec:
   imageRepositoryRef:
-    name: simple-app
+    name: simple-app-image
   policy:
     numerical:
       order: asc
   filterTags:
-    pattern: "^preprod-(?P<timestamp>\\d{8}\\.\\d{4})-[a-f0-9]$"
+    pattern: "^preprod-(?P<timestamp>[0-9]+)-(.*)$"
     extract: "$timestamp"

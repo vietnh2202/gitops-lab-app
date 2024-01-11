@@ -2,7 +2,6 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: simple-app
-  namespace: simple-app
 spec:
   interval: 1m
   sourceRef:
