@@ -33,7 +33,7 @@ spec:
               mountPath: /env
       containers:
         - name: simple-app
-          image: ghcr.io/vietnh2202/simple-app:main
+          image: ghcr.io/vietnh2202/simple-app
           resources:
             requests:
               memory: "64Mi"
